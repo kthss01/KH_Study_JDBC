@@ -187,11 +187,12 @@ public class ProductIODAO {
 	public int insertProductOut(Connection conn, ProductIO p) throws ProductException {
 		int result = 0;
 		
-		List<Product> pList = new ProductDAO().selectId(conn, p.getProductId());
-		if (pList.get(0).getStock() < p.getAmount()) {
-			throw new ProductException("출고하고자 하는 제품의 재고수량이 부족합니다.");
-		}
-		
+		// 여기서 처리하는거 보단 controller에서 처리하자
+//		List<Product> pList = new ProductDAO().selectId(conn, p.getProductId());
+//		if (pList.get(0).getStock() < p.getAmount()) {
+//			throw new ProductException("출고하고자 하는 제품의 재고수량이 부족합니다.");
+//		}
+//		
 		PreparedStatement pstmt = null;
 
 		String sql = prop.getProperty("insertProductOut");

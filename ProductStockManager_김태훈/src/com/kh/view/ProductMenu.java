@@ -51,7 +51,7 @@ public class ProductMenu {
 				productIOMenu();
 				break;
 			case 9:
-				System.out.print("프로그램을 종료하시겠습니까 (y/n)");
+				System.out.print("프로그램을 종료하시겠습니까 (y/n) ");
 				if ('y' == sc.next().toLowerCase().charAt(0)) {
 					pController.exitProgram();
 					return;

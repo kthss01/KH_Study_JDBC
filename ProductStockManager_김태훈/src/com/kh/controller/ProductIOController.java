@@ -3,6 +3,7 @@ package com.kh.controller;
 import java.util.ArrayList;
 
 import com.kh.model.exception.ProductException;
+import com.kh.model.vo.Product;
 import com.kh.model.vo.ProductIO;
 import com.kh.service.ProductIOService;
 import com.kh.service.ProductService;
@@ -82,6 +83,23 @@ public class ProductIOController {
 		int result;
 		
 		try {
+			
+			ArrayList<Product> pList = new ProductService().selectAll();
+			
+			boolean isFind = false;
+			for (Product product : pList) {
+				if (product.getProductId().equals(p.getProductId())) {
+					isFind = true;
+					
+					if (product.getStock() < p.getAmount()) {
+						throw new ProductException("출고하고자 하는 제품의 재고수량이 부족합니다.");
+					}
+				}
+			}
+			if(!isFind) {
+				throw new ProductException("상품 조회 실패");
+			}
+			
 			result = new ProductIOService().insertProductOut(p);
 			if (result > 0) {
 				new ProductMenu().displaySuccess("상품 출고 성공");
