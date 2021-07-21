@@ -26,6 +26,8 @@ public class JDBCTemplate {
 						prop.getProperty("password"));
 				
 				conn.setAutoCommit(false);
+				
+				System.out.println("JDBC 연결 성공");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
